@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import Categories from './Categories';
+import Products from './Products';
+import Button from '@material-ui/core/Button';
+import AddModal from './AddModal';
 import './App.css';
 
 function App() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app__header">
+        <h1 className="title">Products</h1>
+        <Button variant="contained" color="secondary" className="button" onClick={handleOpen}>
+          Add Product
+        </Button>
+      </div>
+      <AddModal open={open} close={handleClose} />
+      <div className="app__container">
+        <Categories />
+        <Products />
+      </div>
     </div>
   );
 }
